@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/qxb/Downloads/rCore-Tutorial-v3'
+docker run --rm -it --mount type=bind,source=/home/qxb/Downloads/rCore-Tutorial-v3,destination=/mnt dinghao188/rcore-tutorial
+make: Leaving directory '/home/qxb/Downloads/rCore-Tutorial-v3'
+ 
