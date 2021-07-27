@@ -19,7 +19,7 @@ fn clear_bss() {
     (sbss as usize..ebss as usize).for_each(|a| unsafe { (a as *mut u8).write_volatile(0) });
 }
 
-#[no_mangle]
+#[no_mangle] // 编译时，不对函数名进行展开
 pub fn rust_main() -> ! {
     extern "C" {
         fn stext();
