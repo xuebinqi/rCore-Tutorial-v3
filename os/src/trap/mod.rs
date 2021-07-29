@@ -3,12 +3,12 @@ mod context;
 use riscv::register::{
     mtvec::TrapMode,
     stvec,
-    scause::{
+    scause::{ // 描述 Trap 的原因
         self,
         Trap,
         Exception,
     },
-    stval,
+    stval, // Trap 附加信息
 };
 use crate::syscall::syscall;
 use crate::batch::run_next_app;

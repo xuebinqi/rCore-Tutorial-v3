@@ -58,7 +58,15 @@ impl AppManager {
         }
         println!("[kernel] Loading app_{}", app_id);
         // clear icache
-        asm!("fence.i");
+        // 缓存是存储层级结构中提高访存速度的很重要一环。 
+        // 而 CPU 对物理内存所做的缓存又分成 数据缓存 (d-cache) 和 指令缓存 (i-cache) 两部分，
+        // 分别在 CPU 访存和取指的时候使用。在取指 的时候，对于一个指令地址，
+        //  CPU 会先去 i-cache 里面看一下它是否在某个已缓存的缓存行内，
+        // 如果在的话它就会直接从高速缓存中拿到指令而不是通过 总线和内存通信。
+        // 通常情况下， CPU 会认为程序的代码段不会发生变化，因此 i-cache 是一种只读缓存。
+        // 但在这里，我们会修改会被 CPU 取指的内存 区域，这会使得 i-cache 中含有与内存中不一致的内容。
+        // 因此我们这里必须使用 fence.i 指令手动清空 i-cache ，让里面所有的内容全部失效， 才能够保证正确性
+        asm!("fence.i"); // icache 即CPU中的指令缓存
         // clear app area
         core::slice::from_raw_parts_mut(
             APP_BASE_ADDRESS as *mut u8,
