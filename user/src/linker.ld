@@ -1,7 +1,8 @@
 OUTPUT_ARCH(riscv)
 ENTRY(_start)
 
-BASE_ADDRESS = 0x80400000;
+/* 程序的其实地址位0x80400000，bin目录下的三个英应用程序都会被加载到这个地址 */
+BASE_ADDRESS = 0x80400000; 
 
 SECTIONS
 {
