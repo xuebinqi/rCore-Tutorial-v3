@@ -2,7 +2,7 @@ mod context;
 
 use riscv::register::{
     mtvec::TrapMode,
-    stvec,
+    stvec, // 控制 Trap 处理代码的入口地址
     scause::{ // 描述 Trap 的原因
         self,
         Trap,

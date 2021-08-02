@@ -8,8 +8,8 @@
     .section .text
     .globl __alltraps
     .globl __restore
-    .align 2
-__alltraps:
+    .align 2 // 按照2^n = 2 * 2 = 4字节对齐
+__alltraps: // 保存Trap上下文
     csrrw sp, sscratch, sp
     # now sp->kernel stack, sscratch->user stack
     # allocate a TrapContext on kernel stack
