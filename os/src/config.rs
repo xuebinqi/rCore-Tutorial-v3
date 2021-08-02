@@ -4,6 +4,8 @@ pub const MAX_APP_NUM: usize = 4;
 pub const APP_BASE_ADDRESS: usize = 0x80400000;
 pub const APP_SIZE_LIMIT: usize = 0x20000;
 
+// CLOCK_FREQ 是一个预先获取到的各平台不同的时钟频率，单位为赫兹，
+// 也就是一秒钟之内计数器的增量
 #[cfg(feature = "board_k210")]
 pub const CLOCK_FREQ: usize = 403000000 / 62;
 
