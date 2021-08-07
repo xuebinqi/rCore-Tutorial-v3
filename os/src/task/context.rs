@@ -1,8 +1,8 @@
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct TaskContext {
-    ra: usize,
-    sp: usize,
+    ra: usize, // ra寄存器,记录__switch返回后应该到哪里继续执行
+    sp: usize, // 被调用者保存的寄存器s0-s11，调用者保存的寄存器可以由编译器帮我们自动保存
     s: [usize; 12],
 }
 
